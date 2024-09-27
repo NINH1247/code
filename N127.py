@@ -1,4 +1,3 @@
-#địt bà mấy con cho định dec t á , mơ à lấy hay chỉnh cả nhà ra đường 1 mét bị đột quỵ , học hành làm việt thì dell làm đc gì
 import requests,os,time,re,json,uuid,random,sys
 from concurrent.futures import ThreadPoolExecutor
 # lấy dữ liệu người dùng
