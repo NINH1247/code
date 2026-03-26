@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Key Viewer</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 15px;
+        width: 350px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .key-box {
+        background: rgba(255,255,255,0.25);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        font-size: 20px;
+        word-break: break-all;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: #ffffff;
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #dfe6e9;
+    }
+
+    .copied {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #dfe6ff;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .copied.show {
+        opacity: 1;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Key của bạn</h2>
+    <div class="key-box" id="keyValue">Không có key</div>
+    <button onclick="copyKey()">Copy Key</button>
+    <div class="copied" id="copyMsg">Đã copy!</div>
+</div>
+
+<script>
+// Lấy tham số key từ URL
+const params = new URLSearchParams(window.location.search);
+const key = params.get("key");
+
+// Hiển thị key
+document.getElementById("keyValue").innerText = key ?? "Không có key";
+
+// Hàm copy vào clipboard
+function copyKey() {
+    if (!key) return;
+
+    navigator.clipboard.writeText(key).then(() => {
+        let msg = document.getElementById("copyMsg");
+        msg.classList.add("show");
+        setTimeout(() => msg.classList.remove("show"), 1500);
+    });
+}
+</script>
+
+</body>
+</html>
